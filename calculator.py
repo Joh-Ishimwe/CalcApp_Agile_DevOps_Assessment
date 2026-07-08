@@ -28,32 +28,6 @@ def multiply(a, b):
     return result
 
 
-def divide(a, b):
-    if b == 0:
-        logging.error("Division by zero attempted")
-        raise ValueError("Error: Cannot divide by zero")
-    result = a / b
-    logging.info(f"Division: {a} / {b} = {result}")
-    return result
-
-
-def save_to_history(calculation):
-    history.append(calculation)
-
-
-def get_history():
-    return history
-
-
-def display_history():
-    if not history:
-        print("No calculations yet.")
-    else:
-        print("\n--- Calculation History ---")
-        for i, entry in enumerate(history, 1):
-            print(f"{i}. {entry}")
-        print("---------------------------\n")
-
 
 def run_calculator():
     print("Welcome to CalcApp!")
@@ -69,9 +43,7 @@ def run_calculator():
             print("Goodbye!")
             break
 
-        if user_input.lower() == 'history':
-            display_history()
-            continue
+        
 
         try:
             # Split input into parts
@@ -98,17 +70,12 @@ def run_calculator():
                 result = multiply(a, b)
                 calculation = f"{a} * {b} = {result}"
 
-            elif operator == '/':
-                result = divide(a, b)
-                calculation = f"{a} / {b} = {result}"
-
+            
             else:
-                print(f"Unknown operator '{operator}'. Use +, -, *, /")
+                print(f"Unknown operator '{operator}'. Use +, -, *")
                 continue
 
-            print(f"Result: {calculation}")
-            save_to_history(calculation)
-
+            
         except ValueError as e:
             print(e)
 
